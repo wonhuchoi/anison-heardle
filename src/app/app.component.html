@@ -1,21 +1,83 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+
+<title>Anime Heardle - Like Wordle, but for Anime Music</title>
+<meta name="description" content="Guess the song from the intro in as few tries as possible.">
+<meta itemprop="name" content="Heardle - Like Wordle, but for Music">
+<meta itemprop="description" content="Guess the song from the intro in as few tries as possible.">
+<meta itemprop="image" content="https://www.heardle.app/og.png">
+<meta property="og:url" content="https://www.heardle.app">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Heardle - Like Wordle, but for Music">
+<meta property="og:description" content="Guess the song from the intro in as few tries as possible.">
+<meta property="og:image" content="https://www.heardle.app/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Heardle - Like Wordle, but for Music">
+<meta name="twitter:description" content="Guess the song from the intro in as few tries as possible.">
+<meta name="twitter:image" content="https://www.heardle.app/og.png">
+
+	<link rel='icon' type='image/png' href='/favicon.png'>
+	<link rel='stylesheet' href='/global.css'>
+	<link rel='stylesheet' href='/build/bundle.css'>
+
+	<script defer src='/build/bundle.js'></script>
+</head>
+
+<body>
+</body>
+</html>
+ -->
+
+
+
+<div *ngIf="!finished">
+ <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    Guess the anime opening title
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  </div>
+<div>
+  
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div>
+  <div>
+      <a id="guess1"></a>
+      <a id="guess2"></a>
+      <a id="guess3"></a>
+      <a id="guess4"></a>
+      <a id="guess5"></a>
+      <a id="guess6"></a>
+  </div>
+
+<div id="audioContainer">
+  <audio id="audio" controls (timeupdate)="checkTime($event)"></audio>
+</div>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Your guess:</mat-label>
+    <input center matInput placeholder="Ex. Attack on Titan" [(ngModel)]="guess">
+  </mat-form-field>
+  <button mat-button (click)="doGuess()">Guess</button>
+</div>
+</div>
+
+<div *ngIf="finished">
+<div *ngIf="loser">
+    <h1>
+      Game Over
+    </h1>
+  </div>
+
+  <div *ngIf="!loser">
+      <h1>
+        Winner: {{songObj.title}}
+      </h1>
+    </div>
+  </div>
 
 <router-outlet></router-outlet>
+<script type="text/javascript" src="songs.json"></script>
